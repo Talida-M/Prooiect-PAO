@@ -18,15 +18,12 @@ Actiuni / Interogari:
 
 ```
 Obiecte:
- 1. Login
- 2. Register
+ 1. Administrator
+ 2. Client
  3. Opera de arta
  4. Expozitie
  5. Galerie
- 6. Persoana:
-     - Administrator
-     - Client
-     - Artist
+ 6. Artist
 ```
 Cerinte Proiect:
 Etapa I
