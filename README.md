@@ -1,4 +1,4 @@
-# Prooiect-PAO
+# Proiect-PAO
 Galerie de Arta 
 
 ```
