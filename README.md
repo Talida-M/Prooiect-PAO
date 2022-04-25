@@ -5,23 +5,14 @@ Galerie de Arta
 Actiuni / Interogari:
 
 - Creare cont client/administrator/artist
-
 - Login
-
 - Creare galerie noua de arta
-
 - Introducere opera de arta noua
-
 - Introducere nou artist
-
 - Introducere viitoare expozitii de arta
-
 - Afisare  cont ckient, istoric achizitii si aprecieri
-
 - Afisare detalii galerie
-
 - Afisare detalii artist (opere de arta, biografie)
-
 - Functionalitate de cumparare a unei opere si punere in istoric
 ```
 
