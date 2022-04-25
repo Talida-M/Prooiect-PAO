@@ -24,9 +24,9 @@ Obiecte:
  4. Expozitie
  5. Galerie
  6. Persoana:
-     - Administrator
-     - Client
-     - Artist
+     -Administrator
+     -Client
+     -Artist
 ```
 Cerinte Proiect:
 Etapa I
