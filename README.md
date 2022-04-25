@@ -10,12 +10,24 @@ Actiuni / Interogari:
 - Introducere opera de arta noua
 - Introducere nou artist
 - Introducere viitoare expozitii de arta
-- Afisare  cont ckient, istoric achizitii si aprecieri
+- Afisare  cont client, istoric achizitii si aprecieri
 - Afisare detalii galerie
 - Afisare detalii artist (opere de arta, biografie)
 - Functionalitate de cumparare a unei opere si punere in istoric
 ```
 
+```
+Obiecte:
+ 1. Login
+ 2. Register
+ 3. Opera de arta
+ 4. Expozitie
+ 5. Galerie
+ 6. Persoana:
+     - Administrator
+     - Client
+     - Artist
+```
 Cerinte Proiect:
 Etapa I
 
