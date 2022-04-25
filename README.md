@@ -2,7 +2,7 @@
 Galerie de Arta 
 
 ```
-#Actiuni / Interogari:
+Actiuni / Interogari:
 
 - Creare cont client/administrator/artist
 
