@@ -69,6 +69,12 @@ public class Adresa {
                 ", codPostal=" + codPostal +
                 '}';
     }
+    public String toCSV() {
+        return  strada + "," +
+                 oras + "," +
+                 tara + "," +
+                codPostal;
+    }
 
 
 }

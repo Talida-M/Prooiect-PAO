@@ -102,7 +102,7 @@ public class Cont {
     @Override
     public String toString() {
         return "Client{" +
-                "prenume='" + prenume + '\'' +
+                "nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", ziNastere=" + ziNastere +
                 ", email='" + email + '\'' +
@@ -110,5 +110,12 @@ public class Cont {
                 ", adresa=" + adresa + '\'' +
                 ", parola=" + parola +
                 '}';
+    }
+
+    public String toCSV() {
+        return nume + "," + prenume
+                + "," + (new SimpleDateFormat("yyyy-MM-dd")).format(ziNastere)
+                + "," + email + "," + telefon
+                + "," + adresa.toCSV() + "," + parola;
     }
 }
