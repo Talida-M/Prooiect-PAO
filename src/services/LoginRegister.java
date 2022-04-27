@@ -1,5 +1,6 @@
 package services;
 import models.Adresa;
+import models.Client;
 import models.Cont;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,17 +13,42 @@ import java.util.Scanner;
 import java.io.IOException;
 
 public class LoginRegister {
-    private List<Cont> client = new ArrayList<Cont>();
+    private List<Cont> conturi = new ArrayList<>();
 
-    public List<Cont> getClient() {
-        return client;
+    public LoginRegister() { }
+
+    public List<Cont> getConturi() {
+        return conturi;
     }
+
+    public LoginRegister(List<Cont> conturi, List<Cont> client) {
+        this.conturi = conturi;
+        this.client = client;
+    }
+
+    public void setConturi(List<Cont> conturi) {
+        this.conturi = conturi;
+    }
+
+    private static LoginRegister singleton = null;
+    private List<Cont> client = new ArrayList<Cont>();
 
     public void setClient(List<Cont> client) {
         this.client = client;
     }
+    public List<Cont> getClient() {
+        return client;
+    }
 
-    private static List<String[]> ColoaneCSV(String fileName){
+
+
+    public static LoginRegister getInstance()
+    {
+        if (singleton == null)
+            singleton = new LoginRegister();
+        return singleton;
+    }
+    private static List<String[]> coloaneCSV(String fileName){
         List<String[]> coloane = new ArrayList<>();
         try(var in = new BufferedReader(new FileReader(fileName))) {
 
@@ -42,7 +68,7 @@ public class LoginRegister {
 
     public void luamCSV() {
         try{
-            var coloane= ColoaneCSV("clienti.csv");
+            var coloane= LoginRegister.coloaneCSV("clienti.csv");
             for(var fields : coloane){
                 var newCont = new Cont(
                         fields[0],
@@ -72,12 +98,26 @@ public class LoginRegister {
             System.out.println(e.toString());
         }
     }
+    private Cont inputPentruCont(Scanner in) throws Exception{
+        if (this.conturi.size() == 0)
+            throw new Exception("Nu avem clienti inregistrati");
+        return conturi.get(0);
 
+    }
+    public void inregistreazaClient(Scanner in) throws ParseException {
+        Cont nouCont =  new Cont(in);
+        this.conturi.add(nouCont);
+        System.out.println("Ati fost  inregistrat ca nou client");
+    }
+    public void getCont(Scanner in) throws Exception{
+        var cont = this.inputPentruCont(in);
+        System.out.println(cont.toString());
+    }
     public void login (){
         Scanner s = new Scanner(System.in);
         System.out.println("Introduceti email:");
         String email = s.nextLine();
-        var coloane= ColoaneCSV("clienti.csv");
+        var coloane= coloaneCSV("clienti.csv");
         for (var fields : coloane){
             if (fields[4] == email) {
                 System.out.println("Introduceti parola:");

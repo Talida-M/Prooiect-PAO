@@ -12,6 +12,10 @@ public class Cont {
     private Date ziNastere;
     private String email, telefon;
 
+    public Cont(Scanner in) throws ParseException {
+        this.read(in);
+    }
+
     public Cont(String nume, String prenume, Date ziNastere, String email, String telefon, Adresa adresa, String parola) {
         this.nume = nume;
         this.prenume = prenume;
