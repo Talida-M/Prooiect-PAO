@@ -6,7 +6,7 @@ public class Expozitie {
     private String titluExpozitie;
     private String tip;
     private Date dataInceput, dataSfarsit;
-    private Galerie galerie;
+    protected Galerie galerie;
 
     public String getTitluExpozitie() {
         return titluExpozitie;

@@ -1,13 +1,27 @@
 package models;
 
-public class Administrator {
-    private String nume, prenume;
-    private String cheieAcces;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
-    public Administrator(String nume, String prenume, String cheieAcces) {
+public final class Administrator {
+    private String nume, prenume;
+
+
+    public Administrator(String nume, String prenume) throws IOException {
         this.nume = nume;
         this.prenume = prenume;
-        this.cheieAcces = cheieAcces;
+
+    }
+
+    public Administrator(Scanner in) {
+        System.out.println("Nume: ");
+        this.nume = in.nextLine();
+        System.out.println("Prenume: ");
+        this.prenume = in.nextLine();
+
     }
 
     public String getNume() {
@@ -31,7 +45,6 @@ public class Administrator {
         return "Administrator{" +
                 "nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
-                ", cheieAcces='" + cheieAcces + '\'' +
                 '}';
     }
 }

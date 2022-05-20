@@ -1,18 +1,65 @@
 package models;
 
+import models.Factory.OpereFactory;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Galerie {
+    private int idGal;
     private String nume;
     private Adresa locatie;
-    private ArrayList<Opera> opere;
+    private List<Opera> opere = new ArrayList<>();
 
-    public Galerie(String nume, Adresa locatie, ArrayList<Opera> opere) {
+    public void addOpera(String titlu, String an, String stil){
+        Opera opera = OpereFactory.addOpera( titlu, an, stil);
+        opere.add(opera);
+    }
+
+    public Galerie(String nume,  int idGal) {
+        this.nume = nume;
+        this.idGal = idGal;
+    }
+
+
+    public Galerie(final int idGal, String nume, Adresa locatie, ArrayList<Opera> opere) {
+        this.idGal = idGal;
         this.nume = nume;
         this.locatie = locatie;
         this.opere = opere;
     }
+    public Galerie(int id, ResultSet in) throws SQLException {
+        this.idGal = id;
+        this.nume = in.getString("Nume");
+        this.locatie = new Adresa(in);
+        this.opere = (List<Opera>) in.getObject("Opere");
 
+    }
+    public Galerie(ResultSet in) throws SQLException {
+        this.nume = in.getString("Nume");
+        this.locatie = new Adresa(in);
+        this.opere = (List<Opera>) in.getObject("Opere");
+    }
+    public void read(ResultSet in) throws SQLException {
+        this.idGal = in.getInt("Id");
+        this.nume = in.getString("Nume");
+        this.locatie = new Adresa(in);
+        this.opere =  (List<Opera>) in.getObject("Opere");
+    }
+    public void read(Scanner in) throws ParseException {
+        System.out.println("Nume: ");
+        this.nume = in.nextLine();
+        System.out.println("Adresa: ");
+        this.locatie = new Adresa(in);
+
+
+
+    }
     public String getNume() {
         return nume;
     }
@@ -29,12 +76,16 @@ public class Galerie {
         this.locatie = locatie;
     }
 
-    public ArrayList<Opera> getOpere() {
+    public List<Opera> getOpere() {
         return opere;
     }
 
     public void setOpere(ArrayList<Opera> opere) {
         this.opere = opere;
+    }
+
+    public int getIdGal() {
+        return idGal;
     }
 
     @Override

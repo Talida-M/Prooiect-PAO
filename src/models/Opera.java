@@ -1,26 +1,35 @@
 package models;
 
-import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Scanner;
 
-public class Opera extends Artist{
-    private int id;
-    private String nume;
+public class Opera{
+    private  int id;
+    private String titlu;
     private String an;
     private String stil;
 
-    public Opera(String nume, String prenume, String telefon, String email, int id, String nume1, String an, String stil) {
-        super(nume, prenume, telefon, email);
+    public Opera( int id,  String titlu, String an, String stil) {
         this.id = id;
-        this.nume = nume1;
+        this.titlu = titlu;
         this.an = an;
         this.stil = stil;
     }
+    public Opera( int id,  String titlu) {
+        this.id = id;
+        this.titlu = titlu;
+    }
+
+
+
 
     @Override
     public String toString() {
         return "Opera{" +
                 "id=" + id +
-                ", nume='" + nume + '\'' +
+                ", nume='" + titlu + '\'' +
                 ", an='" + an + '\'' +
                 ", stil='" + stil + '\'' +
                 '}';
@@ -30,18 +39,36 @@ public class Opera extends Artist{
         return id;
     }
 
-    public void setId(int id) {
+    public Opera( ResultSet in) throws SQLException {
+        this.titlu = in.getString("Nume");
+        this.an = in.getString("An");
+        this.stil = in.getString("Stil");
+    }
+    public void read( Scanner in) throws SQLException {
+        System.out.println("Titlu: ");
+        this.titlu = in.nextLine();
+        System.out.println("An: ");
+        this.an = in.nextLine();
+        System.out.println("Stil: ");
+        this.stil = in.nextLine();
+    }
+
+
+    public Opera(int id, ResultSet in) throws SQLException {
         this.id = id;
+        this.titlu = in.getString("Nume");
+        this.an = in.getString("An");
+        this.stil = in.getString("Stil");
+
     }
 
-    @Override
-    public String getNume() {
-        return nume;
+
+    public String getTitlu() {
+        return titlu;
     }
 
-    @Override
-    public void setNume(String nume) {
-        this.nume = nume;
+    public void setTitlu(String nume) {
+        this.titlu = titlu;
     }
 
     public String getAn() {

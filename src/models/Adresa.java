@@ -1,21 +1,35 @@
 package models;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 public class Adresa {
 
     private String strada, tara, oras;
     private int codPostal;
 
-    public Adresa(String strada, String tara, int codPostal, String oras) {
+    public Adresa(String strada, String tara, String oras, int codPostal) {
         this.strada = strada;
         this.tara = tara;
-        this.codPostal = codPostal;
         this.oras = oras;
+        this.codPostal = codPostal;
+
 
     }
     public Adresa(Scanner in){
         this.read(in);
     }
 
+    public void read(ResultSet in) throws SQLException {
+        this.strada = in.getString("street");
+        this.tara = in.getString("city");
+        this.oras = in.getString("county");
+        this.codPostal = in.getInt("postalCode");
+    }
+
+
+    public Adresa(ResultSet in) throws SQLException {
+        this.read(in);
+    }
     public void read(Scanner in){
         System.out.println("Strada: ");
         this.strada = in.nextLine();
