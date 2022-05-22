@@ -10,19 +10,23 @@ public class Opera{
     private String titlu;
     private String an;
     private String stil;
+    private double pret;
 
-    public Opera( int id,  String titlu, String an, String stil) {
+    public Opera( int id,  String titlu, String an, String stil, double pret) {
         this.id = id;
         this.titlu = titlu;
         this.an = an;
         this.stil = stil;
+        this.pret = pret;
     }
     public Opera( int id,  String titlu) {
         this.id = id;
         this.titlu = titlu;
     }
 
+    public Opera() {
 
+    }
 
 
     @Override
@@ -32,6 +36,7 @@ public class Opera{
                 ", nume='" + titlu + '\'' +
                 ", an='" + an + '\'' +
                 ", stil='" + stil + '\'' +
+                ", pret='" + pret + '\'' +
                 '}';
     }
 
@@ -85,5 +90,17 @@ public class Opera{
 
     public void setStil(String stil) {
         this.stil = stil;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getPret() {
+        return pret;
+    }
+
+    public void setPret(double pret) {
+        this.pret = pret;
     }
 }

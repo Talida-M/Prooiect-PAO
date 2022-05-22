@@ -1,6 +1,5 @@
 package models;
 
-import models.Factory.OpereFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,10 +15,10 @@ public class Galerie {
     private Adresa locatie;
     private List<Opera> opere = new ArrayList<>();
 
-    public void addOpera(String titlu, String an, String stil){
-        Opera opera = OpereFactory.addOpera( titlu, an, stil);
-        opere.add(opera);
+    public Galerie(Scanner in) throws ParseException {
+        this.read(in);
     }
+
 
     public Galerie(String nume,  int idGal) {
         this.nume = nume;
@@ -45,6 +44,11 @@ public class Galerie {
         this.locatie = new Adresa(in);
         this.opere = (List<Opera>) in.getObject("Opere");
     }
+
+    public Galerie() {
+
+    }
+
     public void read(ResultSet in) throws SQLException {
         this.idGal = in.getInt("Id");
         this.nume = in.getString("Nume");
@@ -56,8 +60,6 @@ public class Galerie {
         this.nume = in.nextLine();
         System.out.println("Adresa: ");
         this.locatie = new Adresa(in);
-
-
 
     }
     public String getNume() {
@@ -86,6 +88,14 @@ public class Galerie {
 
     public int getIdGal() {
         return idGal;
+    }
+
+    public void setIdGal(int idGal) {
+        this.idGal = idGal;
+    }
+
+    public void setOpere(List<Opera> opere) {
+        this.opere = opere;
     }
 
     @Override

@@ -3,9 +3,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 public class Adresa {
-
+    private  int idLoc;
     private String strada, tara, oras;
     private int codPostal;
+
+    public Adresa(int idLoc, String strada, String tara, String oras, int codPostal) {
+        this.idLoc = idLoc;
+        this.strada = strada;
+        this.tara = tara;
+        this.oras = oras;
+        this.codPostal = codPostal;
+    }
 
     public Adresa(String strada, String tara, String oras, int codPostal) {
         this.strada = strada;
@@ -17,6 +25,10 @@ public class Adresa {
     }
     public Adresa(Scanner in){
         this.read(in);
+    }
+
+    public Adresa() {
+
     }
 
     public void read(ResultSet in) throws SQLException {
@@ -72,6 +84,14 @@ public class Adresa {
 
     public void setCodPostal(int codPostal) {
         this.codPostal = codPostal;
+    }
+
+    public int getIdLoc() {
+        return idLoc;
+    }
+
+    public void setIdLoc(int idLoc) {
+        this.idLoc = idLoc;
     }
 
     @Override

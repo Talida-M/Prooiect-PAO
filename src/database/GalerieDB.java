@@ -1,0 +1,92 @@
+package database;
+
+import config.Database;
+import models.Adresa;
+import models.Galerie;
+import models.Opera;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class GalerieDB {
+    public void addOpera(Galerie galerie) throws SQLException {
+        String query = "insert into galerie values (?,?,?,? )";
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
+            statement.setInt(1, galerie.getIdGal());
+            statement.setString(2, galerie.getNume());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Adresa adresa = galerie.getLocatie();
+        query = query + adresa.getOras() + ", ";
+
+
+    }
+
+    public void updateNume(Galerie galerie, String nume) throws SQLException {
+        String query = "update `galerie` set `nume` = ? where `idGal` = ?;";
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
+            statement.setString(1, nume);
+            statement.setInt(2, galerie.getIdGal());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void deleteOpera(Galerie galerie) {
+        String query = "delete from `galerie` where `idGal` = ?;";
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
+            statement.setInt(1, galerie.getIdGal());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public ArrayList<Galerie> getAllGalerii(Map<Integer, Adresa>  locatii) {
+        ArrayList<Galerie> galerii = new ArrayList<>();
+        String query = "select * from galerie";
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Galerie galerie = new Galerie();
+                Integer idGal = resultSet.getInt(1);
+                galerie.setIdGal(idGal);
+                galerie.setNume(resultSet.getString(2));
+                galerie.setLocatie(locatii.get(resultSet.getInt(3)));
+
+                galerii.add(idGal, galerie);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return galerii;
+    }
+
+    public void getGaleriiByOras(String oras,   Map<Integer, Adresa> locatii, Map<Integer, Galerie> galerie) {
+        String query = "select * from `galerie` where `oras` = ?;";
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, oras);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Galerie galerie1 = new Galerie();
+                Integer id = resultSet.getInt(1);
+
+                //restaurant.setId(id);
+                galerie1.setLocatie(locatii.get(resultSet.getInt(2)));
+
+                System.out.println(galerie);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

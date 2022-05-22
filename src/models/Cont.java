@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 
 public class Cont {
-    private  int idClient;
-    private String nume, prenume;
-    private Date ziNastere;
-    private String email, telefon;
-    private Adresa adresa;
+
+
+    protected   int idClient;
+    protected String nume, prenume;
+    protected String ziNastere;
+    protected String email, telefon;
+    protected Adresa adresa;
 
 
     public Cont(int customerId, Scanner in) throws ParseException {
@@ -29,7 +31,7 @@ public class Cont {
         this.read(in);
     }
 
-    public Cont(int idClient, String nume, String prenume, Date ziNastere, String email, String telefon, Adresa adresa, String parola) {
+    public Cont(int idClient, String nume, String prenume, String ziNastere, String email, String telefon, Adresa adresa, String parola) {
         this.idClient = idClient;
         this.nume = nume;
         this.prenume = prenume;
@@ -40,6 +42,10 @@ public class Cont {
         this.parola = parola;
     }
 
+    public Cont() {
+
+    }
+
     public int getIdClient() {
         return idClient;
     }
@@ -48,7 +54,7 @@ public class Cont {
     public void read(ResultSet in) throws SQLException {
         this.nume = in.getString("Nume");
         this.prenume = in.getString("Prenume");
-        this.ziNastere = in.getDate("Zi de nastere");
+        this.ziNastere = in.getString("Zi de nastere");
         this.email = in.getString("email");
         this.telefon = in.getString("telefon");
         this.adresa = new Adresa(in);
@@ -61,7 +67,7 @@ public class Cont {
         System.out.println("Prenume: ");
         this.prenume = in.nextLine();
         System.out.println("Zi nastere (yyyy-MM-dd): ");
-        this.ziNastere = new SimpleDateFormat("yyyy-MM-dd").parse(in.nextLine());
+        this.ziNastere = in.nextLine();
         System.out.println("Email: ");
         this.email = in.nextLine();
         System.out.println("telefon: ");
@@ -73,7 +79,7 @@ public class Cont {
     }
     @Override
     public String toString() {
-        return "Client{" +
+        return "VizitatorVirtual{" +
                 "nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", ziNastere=" + ziNastere +
@@ -110,11 +116,11 @@ public class Cont {
         this.prenume = prenume;
     }
 
-    public Date getZiNastere() {
+    public String getZiNastere() {
         return ziNastere;
     }
 
-    public void setZiNastere(Date ziNastere) {
+    public void setZiNastere(String ziNastere) {
         this.ziNastere = ziNastere;
     }
 
@@ -140,6 +146,9 @@ public class Cont {
 
     public void setAdresa(Adresa adresa) {
         this.adresa = adresa;
+    }
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
 

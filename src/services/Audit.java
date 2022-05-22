@@ -19,7 +19,7 @@ public class Audit {
 
     public Audit() {
         try{
-            this.writer = new FileWriter("data/audit.csv");
+            this.writer = new FileWriter("data/opere.csv");
         }catch (IOException e){
             System.out.println(e.toString());
         }
