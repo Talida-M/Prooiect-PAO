@@ -11,7 +11,11 @@ Avem ca roluri: Admin/Vizitator/Artist
 
 -Poate adauga o viitoare expozitie 
 
--Poare realiza cereri primite din partea vizitatorului(printr-un fisier csv cereri). Astfel, in functie de ceea ce doreste un client (sa i se stearga contul, sa ii fie schimbata parola, sa isi schimbe numarul de telefon) administratorul va realiza task-ul.
+-Poare realiza cereri primite din partea vizitatorului(printr-un fisier csv cereri). 
+
+Astfel, in functie de ceea ce doreste un client (sa i se stearga contul, sa ii fie schimbata parola, sa isi schimbe numarul de telefon) 
+
+administratorul va realiza task-ul.
 
 -Poate vizualiza conturile si expozitiile
 
