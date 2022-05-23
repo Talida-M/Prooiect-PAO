@@ -19,7 +19,11 @@ public class ContService {
     private AdresaDB adresaDB;
     protected  int rol_;
 
-    public  ContService(){}
+    public  ContService(){
+        this.contDB = new ContDB();
+        this.artistDB = new ArtistDB();
+    }
+
     public int getRol() {
         return rol_;
     }
@@ -29,13 +33,11 @@ public class ContService {
         this.rol_ = rol_;
     }
 
-    public ContService(ContDB contDB) {
-        this.contDB = contDB;
-    }
+
     public void register(Cont cont) throws SQLException {
         contDB.addCont(cont);
-        Scanner scanner = new Scanner(System.in);
-        createArtist(cont, scanner);
+//        Scanner scanner = new Scanner(System.in);
+//        createArtist(cont, scanner);
     }
     public void createArtist(Cont cont, Scanner scanner){
         System.out.println("Adaugati o descriere pentru ca vizitatorii sa poata afla mai multe despre persoana din spatelel operelor");
@@ -44,6 +46,7 @@ public class ContService {
                 cont.getPrenume(), cont.getZiNastere(), cont.getEmail(), cont.getTelefon(), cont.getAdresa(), cont.getParola(), 0,  descriere);
         artistDB.addArtist(artist);
     }
+
     public Map<Integer, Cont> getAllConturi() {
         return contDB.getAllConturi();
     }
@@ -83,100 +86,144 @@ public class ContService {
             System.out.println(c.getKey() + ". " + c.getValue().getNume() + " " + c.getValue().getPrenume());
         }
         System.out.println("Id-ul contului care necesita update");
-        String id = scanner.nextLine();
+        String id = scanner.next();
         System.out.println("Noul numar de telefon.");
-        String telefon = scanner.nextLine();
+        String telefon = scanner.next();
         Cont cont = conturi.get(Integer.parseInt(id));
         contDB.updateEmail(cont, telefon);
         System.out.println("Telefon modificat cu succes");
     }
-
+ public int getId(String email){
+        return contDB.getId(email);
+ }
     public void changePassword(Map<Integer, Cont> conturi, Scanner scanner) throws SQLException {
         for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
             System.out.println(c.getKey() + ". " + c.getValue().getNume() + " " + c.getValue().getPrenume());
         }
         System.out.println("Id-ul contului care necesita schimbarea parolei");
-        String id = scanner.nextLine();
+        String id = scanner.next();
         System.out.println("Noua parola.");
-        String parola = scanner.nextLine();
+        String parola = scanner.next();
         Cont cont = conturi.get(Integer.parseInt(id));
-        contDB.updateEmail(cont, parola);
+        contDB.changePassword(cont, parola);
         System.out.println("Parola modificat cu succes");
     }
 
-    public Cont Login (Scanner scanner, int rol) throws IOException {
-        Roluri rol1;
+    public void Login (Scanner scanner, int rol, Map<Integer, Cont> conturi) throws IOException {
         this.rol_ = rol;
-        if (Roluri.compareToArt(rol) ){
+        if (rol == 2){
+            int contor = 0;
             System.out.println("Email");
-            String email = scanner.nextLine();
-            if (email.equals(contDB.getEmail(email))) {
+            String email = scanner.next();
+            for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                if (email.equals(c.getValue().getEmail())){
+                    contor = 1;
+                    break;
+                }
+            }
+            if (contor == 1) {
                 System.out.println("Parola");
-                String parola = scanner.nextLine();
-                if (email.equals(contDB.getParola(email))) {
-                    System.out.println("Rol: " + Roluri.getByCode(rol) + " Bun venit");
-                    return new Artist(email, parola);
+                String parola = scanner.next();
+                int c2 = 0;
+                for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                    if (parola.equals(c.getValue().getParola())) {
+                        c2 = 1;
+                        break;
+                    }
+                }
+                if (c2 == 1) {
+                    System.out.println("Rol: Vizitator"   + " Bun venit");
+                   // return new Cont(contDB.getContById();email, parola);
                 }
                 else {
                     System.out.println("Parola incorecta");
                     System.out.println("Introduceti din nou parola");
                     System.out.println("Parola");
-                    String parola2 = scanner.nextLine();
-                    if (email.equals(contDB.getParola(email))) {
-                        System.out.println("Rol: " + Roluri.getByCode(rol) + " Bun venit");
-                        return new Artist(email, parola2);
+                    String parola2 = scanner.next();
+                    int c3 = 0;
+                    for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                        if (parola.equals(c.getValue().getParola())) {
+                            c3 = 1;
+                            break;
+                        }
+                    }
+                    if (c3 == 1) {
+                        System.out.println("Rol: Vizitator"   + " Bun venit");
+                     //   return new Cont(email, parola2);
                     }
                     else {
                         System.out.println("Parola incorecta");
-                        return null;
+                        System.exit(0);
                     }
                 }
 
             }
             else {
                 System.out.println("Nu exista cont inregistrat cu acest email");
-                return null;
+                System.exit(0);
             }
         }
-        if (Roluri.compareToC(rol) ){
+        if (rol == 3){
+            int contor = 0;
             System.out.println("Email");
-            String email = scanner.nextLine();
-            if (email.equals(contDB.getEmail(email))) {
+            String email = scanner.next();
+            for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                if (email.equals(c.getValue().getEmail())){
+                    contor = 1;
+                    break;
+                }
+            }
+            if (contor == 1) {
                 System.out.println("Parola");
-                String parola = scanner.nextLine();
-                if (email.equals(contDB.getParola(email))) {
-                    return new Cont(email, parola);
+                String parola = scanner.next();
+                int c2 = 0;
+                for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                    if (parola.equals(c.getValue().getParola())) {
+                        c2 = 1;
+                        break;
+                    }
+                }
+                if (c2 == 1) {
+                    System.out.println("Rol: Vizitator"   + " Bun venit");
+                    // return new Cont(contDB.getContById();email, parola);
                 }
                 else {
                     System.out.println("Parola incorecta");
                     System.out.println("Introduceti din nou parola");
                     System.out.println("Parola");
-                    String parola2 = scanner.nextLine();
-                    if (email.equals(contDB.getParola(email))) {
-                        System.out.println("Rol: " + Roluri.getByCode(rol) + " Bun venit ");
-                        return new Cont(email, parola2);
+                    String parola2 = scanner.next();
+                    int c3 = 0;
+                    for (Map.Entry<Integer, Cont> c : conturi.entrySet()) {
+                        if (parola.equals(c.getValue().getParola())) {
+                            c3 = 1;
+                            break;
+                        }
+                    }
+                    if (c3 == 1) {
+                        System.out.println("Rol: Vizitator"   + " Bun venit");
+                        //   return new Cont(email, parola2);
                     }
                     else {
                         System.out.println("Parola incorecta");
-                        return null;
+                        System.exit(0);
                     }
                 }
 
             }
             else {
                 System.out.println("Nu exista cont inregistrat cu acest email");
-                return null;
+                System.exit(0);
             }
 
         }
-        if (Roluri.compareTo(rol) ){
+        if (rol == 1){
             System.out.println("Nume ");
-            String nume = scanner.nextLine();
+            String nume = scanner.next();
             System.out.println("Prenume ");
-            String prenume = scanner.nextLine();
+            String prenume = scanner.next();
             System.out.println("Cod Acces");
-            String codA = scanner.nextLine();
-            FileReader fr = new FileReader("Cheie.txt");
+            String codA = scanner.next();
+            FileReader fr = new FileReader("src/services/cheie.txt");
             Scanner inFile = new Scanner(fr);
             String  cod;
             String n = nume + " " + prenume;
@@ -185,19 +232,22 @@ public class ContService {
                 System.out.println("Bun venit " + n);
                 Administrator adm =  new Administrator(nume, prenume);
                 audit.addAction4(nume + " " + prenume);
-                return new Cont(nume, codA);
+                //return new Cont(nume, codA);
 
         }
-        return null;
+       // return null;
     }
 
     public Cont cont (Scanner scanner) {
-        System.out.println("Completati astfel: nume/prenume/ziNastere/email/telefon/phone number/adresa/parola");
-        String line = scanner.nextLine();
-        String[] sp = line.split("/");
-        System.out.println("Locatie:");
-
-        return new Cont(sp[0], sp[1], sp[2], sp[3], sp[4], sp[5],  sp[6]);
+        System.out.println("Completati cu: nume/prenume/ziNastere/email/telefon/adresa(strada,nr,oras -fara spatii-)/parola");
+        String nume = scanner.next();
+        String prenume= scanner.next();
+        String zi = scanner.next();
+        String email = scanner.next();
+        String t = scanner.next();
+        String adr = scanner.next();
+        String p = scanner.next();
+        return new Cont( nume, prenume, zi, email, t, adr, p);
     }
     public  void delogare(){
         this.rol_ = 0;

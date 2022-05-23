@@ -11,16 +11,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ContDB {
-    public void addCont(Cont cont) throws SQLException {
-        String query = "insert into cont values (null,?,?,?,?,?,? )";
+    public void addCont(Cont cont)  {
+        String query = "insert into cont values (null,?,?,?,?,?,?,? )";
         try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
             statement.setString(1, cont.getNume());
             statement.setString(2, cont.getPrenume());
             statement.setString(3, cont.getZiNastere());
             statement.setString(4, cont.getEmail());
             statement.setString(5, cont.getTelefon());
-            statement.setString(5, cont.getAdresa());
-            statement.setString(6, cont.getParola());
+            statement.setString(6, cont.getAdresa());
+            statement.setString(7, cont.getParola());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -144,6 +145,26 @@ public class ContDB {
             e.printStackTrace();
         }
         return query;
+    }
+    public int getId(String email) {
+        String query = "select idClient from `cont` where `email` = ?;";
+        int id = 0;
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Cont cont = new Cont();
+                id = resultSet.getInt(1);
+                cont.setIdClient(id);
+
+
+                System.out.println(cont);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
     public String getEmail(String  email) {
         String query = "select email from `cont` where `email` = ?;";

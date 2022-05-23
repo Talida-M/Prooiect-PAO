@@ -25,11 +25,11 @@ public class Galerie {
         this.idGal = idGal;
     }
 
-    public Galerie(final int idGal, String nume) {
+    public Galerie( int idGal, String nume) {
         this.idGal = idGal;
         this.nume = nume;
     }
-    public Galerie(final int idGal, String nume, String locatie) {
+    public Galerie( int idGal, String nume, String locatie) {
         this.idGal = idGal;
         this.nume = nume;
         this.locatie = locatie;

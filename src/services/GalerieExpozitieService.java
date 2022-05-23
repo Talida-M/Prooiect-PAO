@@ -6,13 +6,17 @@ import models.Expozitie;
 import models.Galerie;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
 public class GalerieExpozitieService {
     private GalerieDB galerieDB;
     private ExpozitieDB expozitieDB;
-    public GalerieExpozitieService (){}
+    public GalerieExpozitieService (){
+        this.expozitieDB = new ExpozitieDB();
+        this.galerieDB = new GalerieDB();
+    }
 
     public void updateNumeGalerie(Map<Integer, Galerie> galerieMap, Scanner scanner) throws SQLException {
         for (Map.Entry<Integer, Galerie> c : galerieMap.entrySet()) {
@@ -27,7 +31,7 @@ public class GalerieExpozitieService {
         System.out.println("Numele a fost modificat cu succes");
     }
     public Map<Integer, Galerie> getGalerie() {
-        return (Map<Integer, Galerie>) galerieDB.getGalerie();
+        return  galerieDB.getGalerie();
     }
 public void createExpozitie(Expozitie expozitie) throws SQLException {
     expozitieDB.addExpozitie(expozitie);
@@ -58,15 +62,19 @@ public void createExpozitie(Expozitie expozitie) throws SQLException {
             System.out.println("Expozitia NU a fost stearsa");
         }
     }
+    public Galerie getGal() {
+        return galerieDB.getGalerie1();
+    }
 
-    public Expozitie expoGal (Scanner scanner, Galerie galerieMap) {
-        System.out.println("Completati astfel: titlu expozitie/tip/data Inceput/data Sfarsit/galerie");
-        String line = scanner.nextLine();
-        String[] sp = line.split("/");
-        System.out.println("Galerie:");
-        return new Expozitie(sp[0], sp[1], sp[2], sp[3], galerieMap);
+    public Expozitie expoGal (Scanner scanner) {
+        System.out.println("Completati cu: titlu expozitie/tip/data Inceput/data Sfarsit");
+        String t = scanner.next();
+        String tip = scanner.next();
+        String dataI = scanner.next();
+        String dataS = scanner.next();
+        return new Expozitie(t, tip, dataI, dataS);
     }
     public Map<Integer, Expozitie> getExpozitii(Map<Integer, Galerie> galerie) {
-        return (Map<Integer, Expozitie>) expozitieDB.getAllExpozitii(galerie);
+        return  expozitieDB.getAllExpozitii(galerie);
     }
 }

@@ -31,6 +31,7 @@ public class MainClass {
         Scanner scanner = new Scanner(System.in);
 
         Map<String, Integer> lista = new HashMap<>();
+        Galerie galerie1 = galerieExpozitieService.getGal();
 //        Map<Integer, Adresa> locatii = contService.getAdrese();
         Map<Integer, Cont> contS = contService.getAllConturi();
         Map<Integer, Opera> opereS = artistServices.getAllOpere();
@@ -57,7 +58,7 @@ public class MainClass {
                         System.exit(0);
                     }
                     case 2: {
-                        contService.Login(scanner, r);
+                        contService.Login(scanner, r, contS);
                         boolean bool = true;
                         while (bool) {
                             System.out.println();
@@ -126,7 +127,7 @@ public class MainClass {
                                             }
                                             case 4: {
                                                 System.out.println("Numarul de aprecieri a fiecarei opera este afisata mai jos: ");
-                                                vizitatorServices.NumaraAprecieri(opereS);
+                                                vizitatorServices.NumaraAprecieri(artistServices.getAllOpere());
                                                 System.out.println("2*Enter pentru a iesi");
                                                 String iesire = scanner.nextLine();
                                                 String iesire2 = scanner.nextLine();
@@ -147,6 +148,7 @@ public class MainClass {
                     case 1: {
                         System.out.println("Inregistrati-va ca si vizitator: ");
                         contService.register(contService.cont(scanner));
+                        //contService.createArtist(artistServices.artist(scanner, (Cont) contS), scanner);
                         System.out.println("Enter pentru a iesi" + reset);
                         String iesire = scanner.nextLine();
                         break;
@@ -175,7 +177,7 @@ public class MainClass {
                         break;
                     }
                     case 2: {
-                        contService.Login(scanner, r);
+                        contService.Login(scanner, r,contS);
                         boolean bool3 = true;
                         while (bool3) {
                             System.out.println();
@@ -189,14 +191,19 @@ public class MainClass {
                                 case 1: {
                                     artistServices.addOpera(artistServices.operaB(scanner));
                                     opereS = artistServices.getAllOpere();
+                                    System.out.println("Completati cu email");
+                                    String email = scanner.next();
+                                    artistServices.addArtistOpera( opereS.hashCode(), contService.getId(email));
                                     System.out.println("Enter pentru a iesi");
                                     String iesire = scanner.nextLine();
                                     break;
                                 }
                                 case 2: {
-                                    artistServices.deleteOpera(opereS, scanner);
+                                    System.out.println("Completati cu email: ");
+                                    String email = scanner.next();
+                                    artistServices.deleteOpera(opereS, scanner,email);
                                     System.out.println(cyan + "Enter pentru a iesi");
-                                    String iesire = scanner.nextLine();
+                                    String iesire = scanner.next();
                                     break;
                                 }
                                 case 3: {
@@ -219,7 +226,7 @@ public class MainClass {
                 }
             }
             if (r == 1) {
-                contService.Login(scanner, 1);
+                contService.Login(scanner, 1, contS);
                 boolean bool = true;
                 while (bool) {
                     System.out.println();
@@ -237,7 +244,7 @@ public class MainClass {
                             System.exit(0);
                         }
                         case 1: {
-                            galerieExpozitieService.createExpozitie(galerieExpozitieService.expoGal(scanner, (Galerie) galerie));
+                            galerieExpozitieService.createExpozitie(galerieExpozitieService.expoGal(scanner));
                             opereS = artistServices.getAllOpere();
                             System.out.println("Enter pentru a iesi");
                             String iesire = scanner.nextLine();
@@ -265,7 +272,7 @@ public class MainClass {
                             while (bool2) {
                                 System.out.println();
                                 System.out.println("1.Sterge cont vizitator");
-                                System.out.println("2.Modifica email");
+                                System.out.println("2.Schimba parola");
                                 System.out.println("3.Modifica telefon");
                                 System.out.println("4.Inapoi");
                                 System.out.println("Alege optiunea");
@@ -277,13 +284,13 @@ public class MainClass {
                                         String iesire = scanner.nextLine();
                                         break;
                                     }
-                                    case  2:{
+                                    case  3:{
                                         contService.updateTelefon(contS, scanner);
                                         System.out.println(green + "Enter pentru a iesi" + reset);
                                         String iesire = scanner.nextLine();
                                         break;
                                     }
-                                    case 3:{
+                                    case 2:{
                                         contService.changePassword(contS, scanner);
                                         System.out.println(green + "Enter pentru a iesi" + reset);
                                         String iesire = scanner.nextLine();

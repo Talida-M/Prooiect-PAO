@@ -17,6 +17,15 @@ public class Artist extends Cont{
         this.idArt = idArt;
         this.descriere = descriere;
     }
+    public Artist(String nume, String prenume, String ziNastere, String email, String telefon, String adresa, String parola, int  idArt, String descriere) {
+        super(nume, prenume, ziNastere, email, telefon, adresa, parola);
+        this.idArt = idArt;
+        this.descriere = descriere;
+    }
+    public Artist(String nume, String prenume, String ziNastere, String email, String telefon, String adresa, String parola,  String descriere) {
+        super(nume, prenume, ziNastere, email, telefon, adresa, parola);
+        this.descriere = descriere;
+    }
 
     public Artist(String email, String parola) {
         super(email, parola);

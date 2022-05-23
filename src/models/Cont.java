@@ -19,10 +19,10 @@ public class Cont {
     protected String adresa;
 
 
-    public Cont(int customerId, Scanner in) throws ParseException {
-        this.idClient = getIdClient();
-        this.read(in);
-    }
+//    public Cont(int customerId, Scanner in) throws ParseException {
+//        this.idClient = getIdClient();
+//        this.read(in);
+//    }
 
     public Cont(int customerId, ResultSet in) throws SQLException {
         this.idClient = customerId;
@@ -35,8 +35,8 @@ public class Cont {
         this.email = email;
         this.parola = parola;
     }
+
     public Cont( String nume, String prenume, String ziNastere, String email, String telefon, String adresa, String parola) {
-        this.idClient = idClient;
         this.nume = nume;
         this.prenume = prenume;
         this.ziNastere = ziNastere;
@@ -159,6 +159,7 @@ public class Cont {
     public String getAdresa() {
         return adresa;
     }
+
 
     public void setAdresa(String adresa) {
         this.adresa = adresa;

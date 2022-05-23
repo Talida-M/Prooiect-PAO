@@ -67,7 +67,15 @@ CREATE TABLE artistOpere (
 insert into `adresa`(`idLoc`, strada, tara, oras, `codPostal`) values (100,'Sct 3 Calea Victoriei Nr.30', 'Romania', 'Bucuresti','30029' );
 insert into `galerie`(`idGal`, nume, `locatie`) values (0, 'Art is Life', 'Sct 3 Calea Victoriei Nr.30,Bucuresti');
 insert into `opera` (id, titlu, an, stil, pret) value (2222, 'Ploaia', '2009','Abstract', 2000 );
-
+insert into `opera` (id, titlu, an, stil, pret) value (2223, 'Sara', '1978','Expresionism', 3000 );
+insert into `expozitie`(`idE`,`titluExpozitie`, tip, `dataInceput`, `dataSfarsit`, `idGal`) values (1111, 'Abstractul nu este doar o miscare', 'B(descoperire)', '10.08.2022', '13.08.2022', 1);
+insert into `expozitie`(`titluExpozitie`, tip, `dataInceput`, `dataSfarsit`, `idGal`) values ( 'Dans si Pictura', 'A(educativ)', '23.10.2022', '20.10.2022', 1);
+insert into `cont` (idClient, nume, prenume, `ziNastere`,email,telefon, adresa,parola) values (333, 'Ghenie', 'Adrian', '13-08-1977', 'ghenie@yahoo.com', '0987698712', 'Sct 3 St. N. Grigorescu Nr.20,Bucuresti', 'parola1');
+insert into `artist`(`idArt`, `idClient`, descriere ) values (555, 333, 'Artist roman contemporan de talie internationala care, in ultimii ani a castigat o notorietate de mare anvergura. O lucrare  a fost vanduta pentru  1,1 mil$')
+insert into `artistOpere`(`id`, `idArt`, `idO`) values (11, 555, 2223);
 Commit;
 select * from galerie;
 select * from adresa;
+select * from opera;
+select * from cont;
+

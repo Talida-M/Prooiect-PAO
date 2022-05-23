@@ -3,13 +3,12 @@ package database;
 import config.Database;
 import models.Adresa;
 import models.Artist;
+import models.ArtistOpere;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ArtistDB {
     public void addArtist(Artist artist) {
@@ -67,22 +66,22 @@ public class ArtistDB {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Artist artist = new Artist();
-                Integer id = resultSet.getInt(1);
-                artist.setIdClient(id);
-                artist.setNume(resultSet.getString(2));
-                artist.setPrenume(resultSet.getString(3));
-                artist.setZiNastere(resultSet.getString(4));
-                artist.setEmail(resultSet.getString(5));
-                artist.setTelefon(resultSet.getString(6));
-//                artist.setAdresa(locatii.get(resultSet.getInt(7)));
-                artist.setParola(resultSet.getString(8));
-                Integer idA = resultSet.getInt(9);
-                artist.setDescriere(resultSet.getString(10));
-                map.put(id, artist);
+                artist.setNume(resultSet.getString(1));
+                artist.setPrenume(resultSet.getString(2));
+                artist.setZiNastere(resultSet.getString(3));
+                artist.setEmail(resultSet.getString(4));
+                artist.setTelefon(resultSet.getString(5));
+                artist.setAdresa(resultSet.getString(6));
+                artist.setParola(resultSet.getString(7));
+                Integer idA = resultSet.getInt(8);
+                artist.setIdArt(idA);
+                artist.setDescriere(resultSet.getString(9));
+                map.put(idA, artist);
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
         return map;
     }
+
 }

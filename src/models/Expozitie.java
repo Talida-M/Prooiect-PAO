@@ -30,6 +30,12 @@ public class Expozitie {
         this.dataSfarsit = dataSfarsit;
         this.galerie = galerie;
     }
+    public Expozitie(String titluExpozitie, String tip, String dataInceput, String dataSfarsit) {
+        this.titluExpozitie = titluExpozitie;
+        this.tip = tip;
+        this.dataInceput = dataInceput;
+        this.dataSfarsit = dataSfarsit;
+    }
 
     public Expozitie() {
 

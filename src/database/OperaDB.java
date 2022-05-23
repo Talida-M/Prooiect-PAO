@@ -10,12 +10,13 @@ import java.util.Map;
 
 public class OperaDB {
     public void addOpera(Opera opera) throws SQLException {
-        String query = "insert into opera values (null,?,?,? )";
+        String query = "insert into opera values (null,?,?,?,? )";
         try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
             statement.setString(1, opera.getTitlu());
             statement.setString(2, opera.getAn());
             statement.setString(3, opera.getStil());
             statement.setDouble(4, opera.getPret());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

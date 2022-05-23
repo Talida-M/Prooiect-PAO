@@ -18,6 +18,7 @@ public class GalerieDB {
             statement.setInt(1, galerie.getIdGal());
             statement.setString(2, galerie.getNume());
             statement.setString(3, galerie.getLocatie());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,8 +48,8 @@ public class GalerieDB {
         }
     }
 
-    public ArrayList<Galerie> getGalerie() {
-        ArrayList<Galerie> galerii = new ArrayList<>();
+    public Map<Integer, Galerie> getGalerie() {
+        Map<Integer, Galerie> galerii = new HashMap<>();
         String query = "select * from galerie";
         try{
             PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
@@ -60,12 +61,28 @@ public class GalerieDB {
                 galerie.setNume(resultSet.getString(2));
                 galerie.setLocatie(resultSet.getString(3));
 
-                galerii.add(idGal, galerie);
+                galerii.put(idGal, galerie);
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
         return galerii;
+    }
+    public Galerie getGalerie1() {
+        String query = "select * from galerie";
+        Galerie galerie = new Galerie();
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                galerie.setIdGal(resultSet.getInt(1));
+                galerie.setNume(resultSet.getString(2));
+                galerie.setLocatie(resultSet.getString(3));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return galerie;
     }
 
 //    public void getGalerieByOras(String oras,  Map<Integer, Galerie> galerie) {
