@@ -41,7 +41,7 @@ public class ExpozitieDB {
     }
 
 
-    public void deleteOpera(Expozitie expozitie) {
+    public void deleteExpozitie(Expozitie expozitie) {
         String query = "delete from `expozitie` where `idE` = ?;";
         try (PreparedStatement statement = Database.getConnection().prepareStatement(query)) {
             statement.setInt(1, expozitie.getIdE());

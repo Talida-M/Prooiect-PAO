@@ -18,10 +18,8 @@ CREATE TABLE adresa (
 CREATE TABLE galerie (
   idGal int NOT NULL AUTO_INCREMENT,
   nume varchar(30) DEFAULT NULL,
-  idLoc int  DEFAULT NULL,
-  PRIMARY KEY (idGal),
-  KEY idLoc (idLoc),
-  CONSTRAINT `loc_ibfk` FOREIGN KEY (`idLoc`) REFERENCES `adresa` (`idLoc`) ON DELETE CASCADE
+  locatie character(40)  DEFAULT NULL,
+  PRIMARY KEY (idGal)
 );
 
 CREATE TABLE expozitie (
@@ -43,11 +41,9 @@ CREATE TABLE cont (
   ziNastere varchar(13) DEFAULT NULL,
   email varchar(20) DEFAULT NULL,
   telefon varchar(12) DEFAULT NULL,
-  idLoc int  DEFAULT NULL,
+  adresa character(40)  DEFAULT NULL,
   parola varchar(30) DEFAULT NULL,
-  PRIMARY KEY (idClient),
-  KEY idLoc (idLoc),
-  CONSTRAINT `loc_ibfk_1` FOREIGN KEY (`idLoc`) REFERENCES `adresa` (`idLoc`) ON DELETE CASCADE
+  PRIMARY KEY (idClient)
 );
 CREATE TABLE artist (
   idArt int NOT NULL AUTO_INCREMENT,
@@ -58,6 +54,20 @@ CREATE TABLE artist (
   CONSTRAINT `client_ibfk_1` FOREIGN KEY (`idClient`) REFERENCES `cont` (`idClient`) ON DELETE CASCADE
 );
 Commit;
+CREATE TABLE artistOpere (
+  id int NOT NULL AUTO_INCREMENT,
+  idArt int NOT NULL,
+  idO int NOT NULL,
+  PRIMARY KEY (id),
+  KEY idArt (idArt),
+  KEY idO (idO),
+  CONSTRAINT `artist_ibfk_1` FOREIGN KEY (`idArt`) REFERENCES `artist` (`idArt`) ON DELETE CASCADE,
+  CONSTRAINT `opera_ibfk_2` FOREIGN KEY (`idO`) REFERENCES `opera` (`id`) ON DELETE CASCADE
+);
+insert into `adresa`(`idLoc`, strada, tara, oras, `codPostal`) values (100,'Sct 3 Calea Victoriei Nr.30', 'Romania', 'Bucuresti','30029' );
+insert into `galerie`(`idGal`, nume, `locatie`) values (0, 'Art is Life', 'Sct 3 Calea Victoriei Nr.30,Bucuresti');
+insert into `opera` (id, titlu, an, stil, pret) value (2222, 'Ploaia', '2009','Abstract', 2000 );
 
-
-
+Commit;
+select * from galerie;
+select * from adresa;

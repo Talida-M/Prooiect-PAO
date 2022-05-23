@@ -10,7 +10,14 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\services\clienti.csv">
+        <entry key="\src\files\cereri.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\files\listaActiuni.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

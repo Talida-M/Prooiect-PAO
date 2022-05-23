@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Expozitie {
@@ -33,6 +34,8 @@ public class Expozitie {
     public Expozitie() {
 
     }
+
+
 
     public void read(Scanner in) throws ParseException {
         System.out.println("Titlu Expozitir: ");

@@ -7,7 +7,7 @@ import java.util.List;
 public class VizitatorVirtual extends Cont {
     private ArrayList<String> listaDorinte;
 
-    public VizitatorVirtual(int idClient, String nume, String prenume, String ziNastere, String email, String telefon, Adresa adresa, String parola, ArrayList<String> listaDorinte) {
+    public VizitatorVirtual(int idClient, String nume, String prenume, String ziNastere, String email, String telefon, String adresa, String parola, ArrayList<String> listaDorinte) {
         super(idClient, nume, prenume, ziNastere, email, telefon, adresa, parola);
         this.listaDorinte = listaDorinte;
     }

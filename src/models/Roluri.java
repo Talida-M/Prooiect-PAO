@@ -9,7 +9,7 @@ public enum Roluri {
     Roluri(int cod) {
         this.cod = cod;
     }
-    public Roluri getByCode(int cod) {
+    public static Roluri getByCode(int cod) {
         Roluri result = null;
         for(Roluri c : Roluri.values()) {
             if(c.cod == cod) {
@@ -17,5 +17,15 @@ public enum Roluri {
             }
         }
         return result;
+    }
+
+    public static boolean compareTo(int o) {
+        return ADMIN.compareTo(o);
+    }
+    public static boolean compareToArt(int o) {
+        return ARTIST.compareTo(o);
+    }
+    public static boolean compareToC(int o) {
+        return CLIENT.compareTo(o);
     }
 }

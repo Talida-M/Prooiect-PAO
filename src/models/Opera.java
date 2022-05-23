@@ -19,6 +19,12 @@ public class Opera{
         this.stil = stil;
         this.pret = pret;
     }
+    public Opera(   String titlu, String an, String stil, double pret) {
+        this.titlu = titlu;
+        this.an = an;
+        this.stil = stil;
+        this.pret = pret;
+    }
     public Opera( int id,  String titlu) {
         this.id = id;
         this.titlu = titlu;

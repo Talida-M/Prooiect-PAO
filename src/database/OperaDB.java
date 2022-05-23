@@ -74,4 +74,48 @@ public class OperaDB {
         }
         return map;
     }
+
+    public Map<Integer, Opera> getAllOpereById(Integer id) {
+        Map<Integer, Opera> map = new HashMap<Integer, Opera>();
+        String query = "select * from opera where id = ?;";
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Opera opera = new Opera();
+                Integer idO = resultSet.getInt(1);
+                opera.setId(id);
+                opera.setTitlu(resultSet.getString(2));
+                opera.setAn(resultSet.getString(3));
+                opera.setStil(resultSet.getString(4));
+                opera.setPret(resultSet.getDouble(5));
+                map.put(id, opera);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public Map<String, Opera> getAllOpereByStil(String stil) {
+        Map<String, Opera> map = new HashMap<String, Opera>();
+        String query = "select * from opera where stil = ?;";
+        try{
+            PreparedStatement preparedStatement = Database.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, stil);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Opera opera = new Opera();
+                opera.setTitlu(resultSet.getString(2));
+                opera.setAn(resultSet.getString(3));
+                opera.setStil(resultSet.getString(4));
+                opera.setPret(resultSet.getDouble(5));
+                map.put(stil, opera);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 }

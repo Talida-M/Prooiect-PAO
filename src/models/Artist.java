@@ -12,10 +12,14 @@ public class Artist extends Cont{
     private String descriere;
 
 
-    public Artist(int idClient, String nume, String prenume, String ziNastere, String email, String telefon, Adresa adresa, String parola, int  idArt, String descriere) {
+    public Artist(int idClient, String nume, String prenume, String ziNastere, String email, String telefon, String adresa, String parola, int  idArt, String descriere) {
         super(idClient, nume, prenume, ziNastere, email, telefon, adresa, parola);
         this.idArt = idArt;
         this.descriere = descriere;
+    }
+
+    public Artist(String email, String parola) {
+        super(email, parola);
     }
 
     public Artist(ResultSet in) throws SQLException{
@@ -41,7 +45,7 @@ public class Artist extends Cont{
                 ", ziNastere='" + ziNastere + '\'' +
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
-                ", adresa=" + adresa +
+//                ", adresa=" + adresa +
                 ", idArt=" + idArt +
                 "descriere='" + descriere + '\'' +
                 '}';

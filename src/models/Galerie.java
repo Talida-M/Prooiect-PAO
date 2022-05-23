@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Galerie {
     private int idGal;
     private String nume;
-    private Adresa locatie;
-    private List<Opera> opere = new ArrayList<>();
+    private String locatie;
+
 
     public Galerie(Scanner in) throws ParseException {
         this.read(in);
@@ -25,24 +25,24 @@ public class Galerie {
         this.idGal = idGal;
     }
 
-
-    public Galerie(final int idGal, String nume, Adresa locatie, ArrayList<Opera> opere) {
+    public Galerie(final int idGal, String nume) {
+        this.idGal = idGal;
+        this.nume = nume;
+    }
+    public Galerie(final int idGal, String nume, String locatie) {
         this.idGal = idGal;
         this.nume = nume;
         this.locatie = locatie;
-        this.opere = opere;
     }
     public Galerie(int id, ResultSet in) throws SQLException {
         this.idGal = id;
         this.nume = in.getString("Nume");
-        this.locatie = new Adresa(in);
-        this.opere = (List<Opera>) in.getObject("Opere");
+        this.locatie = in.getString("Loc");
 
     }
     public Galerie(ResultSet in) throws SQLException {
         this.nume = in.getString("Nume");
-        this.locatie = new Adresa(in);
-        this.opere = (List<Opera>) in.getObject("Opere");
+        this.locatie = in.getString("Loc");
     }
 
     public Galerie() {
@@ -52,14 +52,13 @@ public class Galerie {
     public void read(ResultSet in) throws SQLException {
         this.idGal = in.getInt("Id");
         this.nume = in.getString("Nume");
-        this.locatie = new Adresa(in);
-        this.opere =  (List<Opera>) in.getObject("Opere");
+        this.locatie = in.getString("Loc");
     }
     public void read(Scanner in) throws ParseException {
         System.out.println("Nume: ");
         this.nume = in.nextLine();
         System.out.println("Adresa: ");
-        this.locatie = new Adresa(in);
+        this.locatie = in.nextLine();
 
     }
     public String getNume() {
@@ -70,21 +69,15 @@ public class Galerie {
         this.nume = nume;
     }
 
-    public Adresa getLocatie() {
+    public String getLocatie() {
         return locatie;
     }
 
-    public void setLocatie(Adresa locatie) {
+    public void setLocatie(String locatie) {
         this.locatie = locatie;
     }
 
-    public List<Opera> getOpere() {
-        return opere;
-    }
 
-    public void setOpere(ArrayList<Opera> opere) {
-        this.opere = opere;
-    }
 
     public int getIdGal() {
         return idGal;
@@ -94,16 +87,12 @@ public class Galerie {
         this.idGal = idGal;
     }
 
-    public void setOpere(List<Opera> opere) {
-        this.opere = opere;
-    }
 
     @Override
     public String toString() {
         return "Galerie{" +
                 "nume='" + nume + '\'' +
                 ", locatie=" + locatie +
-                ", opere=" + opere +
                 '}';
     }
 }

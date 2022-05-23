@@ -1,0 +1,49 @@
+package services;
+
+import database.ContDB;
+import models.Cont;
+import models.Opera;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class VizitatorServices {
+    private Audit audit;
+    private ContDB contDB;
+    public VizitatorServices(){}
+
+    public void putOpereOnList(Scanner scanner, String user) throws IOException {
+        System.out.println("Apreciati opera: Titlu Opera/Artist");
+        String apreciere = scanner.nextLine();
+        System.out.println("Opera " + apreciere + " a fost apreciata");
+        audit.addAction2(apreciere, user);
+    }
+
+    public  void CereriCatreAdmin(Scanner scanner) throws IOException {
+        System.out.println("In cazul in care doriti sa va schimbati parola sau sa faceti un update numarului de telefon lasati un mesaj aici. Administratorul site-ului se va ocupa de asta.");
+        System.out.println("Pentru schimbarea parolei/numarului de telefon va rog sa specificati noua parola/numar");
+        System.out.println("De asemenea daca doriti stergerea contului, acest lucru este posibil");
+        String mesaj = scanner.nextLine();
+        audit.addAction3(mesaj);
+    }
+public Map<String, Integer> NumaraAprecieri(Map<Integer, Opera> opere) throws FileNotFoundException {
+    File file = new File("src/files/listaActiuni.csv");
+    Map<String, Integer> aprecieri = new HashMap<>();
+    Scanner scanner = new Scanner(file);
+    for (Map.Entry<Integer, Opera> c : opere.entrySet()){
+        int counter = 0;
+        while (scanner.hasNext()){
+            String[] input = scanner.nextLine().split(",");
+            if (input[0].equals(c.getValue().getTitlu())){
+                counter +=1;
+            }
+        }
+        aprecieri.put(c.getValue().getTitlu(), counter);
+    }
+    return  aprecieri;
+}
+}

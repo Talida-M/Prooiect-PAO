@@ -59,7 +59,7 @@ public class ArtistDB {
         }
     }
 
-    public Map<Integer, Artist> getAllArtists(Map<Integer, Adresa>  locatii) {
+    public Map<Integer, Artist> getAllArtists() {
         Map map = new HashMap<Integer, Artist>();
         String query = "select * from artist;";
         try{
@@ -74,7 +74,7 @@ public class ArtistDB {
                 artist.setZiNastere(resultSet.getString(4));
                 artist.setEmail(resultSet.getString(5));
                 artist.setTelefon(resultSet.getString(6));
-                artist.setAdresa(locatii.get(resultSet.getInt(7)));
+//                artist.setAdresa(locatii.get(resultSet.getInt(7)));
                 artist.setParola(resultSet.getString(8));
                 Integer idA = resultSet.getInt(9);
                 artist.setDescriere(resultSet.getString(10));
