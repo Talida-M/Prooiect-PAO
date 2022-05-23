@@ -1,49 +1,61 @@
 # Proiect-PAO
 Galerie de Arta 
 
+Proiectul se concentreaza pentru administrarea unei galerii de arta online.
+
 ```
 Actiuni / Interogari:
+Avem ca roluri: Admin/Vizitator/Artist
 
-- Creare cont client/administrator/artist
+#Administratorul are urmatoarele actiuni:
+
+-Poate adauga o viitoare expozitie 
+
+-Poare realiza cereri primite din partea vizitatorului(printr-un fisier csv cereri). Astfel, in functie de ceea ce doreste un client (sa i se stearga contul, sa ii fie schimbata parola, sa isi schimbe numarul de telefon) administratorul va realiza task-ul.
+
+-Poate vizualiza conturile si expozitiile
+
+#Clientul are urmatoarele permisiuni:
+-Register
+
 - Login
-- Creare galerie noua de arta
-- Introducere opera de arta noua
-- Introducere nou artist
-- Introducere viitoare expozitii de arta
-- Afisare  cont client, istoric achizitii si aprecieri
-- Afisare detalii galerie
-- Afisare detalii artist (opere de arta, biografie)
-- Functionalitate de cumparare a unei opere si punere in istoric
+
+- Vizualizare  Opere unde:
+
+ ->Vezi toate operele
+ 
+ -> Vezi opere filtrate dupa stil
+ 
+ -> Apreciere opere (se va pune intr-un fisier csv numele operei, emailul si data la care a fost facuta)
+ 
+ -> Vizualizare numar aprecieri(se vor numara aprecierile din fisierul listaActiuni)
+
+-Vizualizeaza detalii despre viitoarele expozitii
+
+-Creare Cereri pentru Admin
+
+#Artistul poate folosi programul astfel:
+
+-Register
+
+-Login
+
+-Adauga Opere 
+
+-Poate sa elimine din galerie o opera
+
+-Poate sa modifice pretul unei opere
+
 ```
 
 ```
 Obiecte:
  1. Administrator
- 2. Client
+ 2. Vizitator
  3. Opera de arta
  4. Expozitie
  5. Galerie
  6. Artist
+ 7. Cont
+ 8. ArtistOpera (este o clasa care reprezinta tabelul asociativ intre artist si opere <mai multi artisti au mai multe opere expuse>)
 ```
-Cerinte Proiect:
-Etapa I
-
-1) Definirea sistemului
-Să se creeze o lista pe baza temei alese cu cel puțin 10 acțiuni/interogări care se pot face în
-cadrul sistemului și o lista cu cel puțin 8 tipuri de obiecte.
-
-2) Implementare
-Sa se implementeze în limbajul Java o aplicație pe baza celor definite la primul punct.
-Aplicația va conține:
-
-• clase simple cu atribute private / protected și metode de acces
- 
-• cel puțin 2 colecții diferite capabile să gestioneze obiectele definiteanterior (eg: List, Set,
-Map, etc.) dintre care cel puțin una sa fie sortata – se vor folosi array-uri uni-
-/bidimensionale în cazul în care nu se parcurg colectiile pana la data checkpoint-ului.
-
-• utilizare moștenire pentru crearea de clase adiționale și utilizarea lor încadrul colecțiilor;
-
-• cel puțin o clasă serviciu care sa expună operațiile sistemului
-
-• o clasa Main din care sunt făcute apeluri către servicii
