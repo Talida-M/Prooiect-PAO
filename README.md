@@ -1,7 +1,7 @@
 # Proiect-PAO
 Galerie de Arta 
 
-Proiectul se concentreaza pentru administrarea unei galerii de arta online.
+Proiectul are ca scop  administrarea unei galerii de arta online.
 
 ```
 Actiuni / Interogari:
